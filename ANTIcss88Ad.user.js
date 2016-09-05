@@ -12,12 +12,12 @@
 (function() {
     'use strict';
     var uw = this;
-    var ib = uw.Node.prototype.appendChild;
-    uw.Node.prototype.appendChild = function(t, p) {
-        if (t.tagName === 'DIV' && this.tagName === 'BODY' && t.querySelector('.cry-face-dia')) {
-            uw.Node.prototype.insertBefore = ib;
+    var ac = uw.Node.prototype.appendChild;
+    uw.Node.prototype.appendChild = function(dom) {
+        if ((dom.nodeName || dom.tagName).toUpperCase() === 'DIV' && this.tagName === 'BODY' && dom.querySelector('.cry-face-con-close')) {
+            uw.Node.prototype.appendChild = ac;
             return;
         }
-        ib.apply(this, Array.prototype.slice.call(arguments));
+        return ac.apply(this, Array.prototype.slice.call(arguments));
     };
 }).apply(unsafeWindow);
